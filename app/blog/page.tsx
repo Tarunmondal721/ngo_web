@@ -77,7 +77,7 @@ const blogPosts = [
     readTime: "5 min read",
     category: "Sustainability",
     image: "/sustainable-farming-community-garden.png",
-    featured: false,
+    featured: true,
   },
 ]
 

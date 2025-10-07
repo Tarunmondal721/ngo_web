@@ -84,7 +84,8 @@ export default function SpecificGalleryPage() {
     formData.append("title",gallerydata.title);
     formData.append("description",gallerydata.description);
     formData.append("category_id",gallerydata.category_id);
-    if(gallerydata.image) formData.append("image",gallerydata.image);
+    formData.append("alt",gallerydata.display_name);
+    if(gallerydata.image) formData.append("src",gallerydata.image);
    
     console.log("teeff",gallerydata);
     
@@ -92,11 +93,7 @@ export default function SpecificGalleryPage() {
       const res = await handleApiRequest( ()=> updateGallery(
         token,
         g_Id,
-        gallerydata.description,
-        gallerydata.category_id,
-        gallerydata.image!,
-        gallerydata.display_name,
-        gallerydata.title,
+       formData
       ),
       "Gallery Update Successfully!"
     );
@@ -213,20 +210,18 @@ export default function SpecificGalleryPage() {
             className="cursor-pointer flex flex-col items-center"
           >
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-indigo-400 shadow-md hover:scale-105 transition-transform bg-gray-100">
-              {gallerydata.image ? (
-                typeof gallerydata.image === "string" ? (
-                  <img
+              {gallerydata.image &&   typeof gallerydata.image === "string" ? (
+                <img
                     src={gallerydata.image}
                     alt="Current"
                     className="w-full h-full object-cover"
                   />
-                ) : (
+                ) : gallerydata.image instanceof File?  (
                   <img
                     src={URL.createObjectURL(gallerydata.image)}
                     alt="Preview"
                     className="w-full h-full object-cover"
                   />
-                )
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400 text-lg font-semibold">
                   + Upload

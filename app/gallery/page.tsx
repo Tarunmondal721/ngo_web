@@ -9,89 +9,11 @@ import { Badge } from "@/components/ui/badge"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { X, ZoomIn, Filter } from "lucide-react"
-import { useAuth } from "@/hooks/useAuth"
-import { caterorys, getGalleryImages } from "@/lib/api"
+import { caterorys, getGalleryImages } from "@/lib/public"
 
 
 
-const galleryImages = [
-  {
-    id: 1,
-    src: "/clean-water-project--well-construction--community-.png",
-    alt: "Clean water well construction in Guatemala",
-    category: "Water Projects",
-    title: "Well Construction in San Pedro",
-    description: "Community members celebrating the completion of their new water well",
-  },
-  {
-    id: 2,
-    src: "/education-program--children-learning-in-classroom-.png",
-    alt: "Children learning in classroom",
-    category: "Education",
-    title: "Classroom Learning in Kenya",
-    description: "Students engaged in interactive learning at our school in Nairobi",
-  },
-  {
-    id: 3,
-    src: "/healthcare-program--medical-care--community-health.png",
-    alt: "Healthcare program in action",
-    category: "Healthcare",
-    title: "Mobile Clinic Services",
-    description: "Our medical team providing care in remote villages",
-  },
-  {
-    id: 4,
-    src: "/community-development-project--people-working-toge.png",
-    alt: "Community development project",
-    category: "Community Development",
-    title: "Building Together",
-    description: "Volunteers and community members working on infrastructure projects",
-  },
-  {
-    id: 5,
-    src: "/diverse-group-of-people-helping-in-community--warm.png",
-    alt: "Diverse group helping community",
-    category: "Volunteers",
-    title: "International Volunteer Team",
-    description: "Volunteers from around the world coming together to help",
-  },
-  {
-    id: 6,
-    src: "/sustainable-farming-community-garden.png",
-    alt: "Sustainable farming project",
-    category: "Agriculture",
-    title: "Community Garden Project",
-    description: "Teaching sustainable farming techniques for food security",
-  },
-  {
-    id: 7,
-    src: "/ngo-founders--diverse-group--inspiring-leadership.png",
-    alt: "NGO leadership team",
-    category: "Team",
-    title: "Leadership Team Meeting",
-    description: "Our dedicated team planning future initiatives",
-  },
-  {
-    id: 8,
-    src: "/smiling-woman--mother--hope-and-gratitude.png",
-    alt: "Beneficiary portrait",
-    category: "Impact Stories",
-    title: "Maria's Story",
-    description: "Maria, whose life was transformed by access to clean water",
-  },
-]
 
-// const categories = [
-//   "All",
-//   "Water Projects",
-//   "Education",
-//   "Healthcare",
-//   "Community Development",
-//   "Volunteers",
-//   "Agriculture",
-//   "Team",
-//   "Impact Stories",
-// ]
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -100,15 +22,14 @@ export default function GalleryPage() {
   const [galleryImages, setGalleryImages] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  const { token } = useAuth()
 
   // Fetch galleries
   useEffect(() => {
-    if (!token) return
+    
     const fetchGalleries = async () => {
       setLoading(true)
       try {
-        const res = await getGalleryImages(token)
+        const res = await getGalleryImages()
         setGalleryImages(Array.isArray(res?.data?.data) ? res.data.data : [])
       } catch (error) {
         console.error(error)
@@ -118,15 +39,14 @@ export default function GalleryPage() {
       }
     }
     fetchGalleries()
-  }, [token])
+  }, [])
 
   // Fetch categories
   useEffect(() => {
-    if (!token) return
     const fetchCategories = async () => {
       setLoading(true)
       try {
-        const res = await caterorys(token)
+        const res = await caterorys()
         setCategories(Array.isArray(res?.data?.data) ? res?.data?.data : [])
       } catch (error) {
         console.error("Error fetching categories:", error)
@@ -136,7 +56,7 @@ export default function GalleryPage() {
       }
     }
     fetchCategories()
-  }, [token])
+  },[])
 
   // Filter images
   const filteredImages =

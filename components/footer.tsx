@@ -10,8 +10,12 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               {/* <Heart className="h-8 w-8 text-primary" /> */}
-            <img src="/logo.png" height={70} width={70} className="m-0" alt="Suhrit Organisation"/>
-              <span className="font-heading font-bold text-xl">Suhrit Organisation</span>
+              <img src="/logo.png" height={70} width={70} className="m-0" alt="Suhrit Organisation" />
+              <span
+                className="font-heading text-xl text-foreground">
+                <span className="font-bold text-2xl">Suhrit</span>{" "}
+                <span className="font-light text-lg">Organisation</span>
+              </span>
             </Link>
             <p className="text-muted-foreground">
               Creating positive change in communities worldwide through compassion, action, and hope.
@@ -43,15 +47,15 @@ export function Footer() {
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span>info@hopefoundation.org</span>
+                <span>suhritorganization@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91  8653-681-154</span>
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                <span>123 Hope Street, City, State 12345</span>
+                <span>Contai,West Bengal,721401</span>
               </div>
             </div>
           </div>

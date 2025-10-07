@@ -36,9 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
       <body className="font-body antialiased">
-        <Providers>
+        {/* <Providers> */}
         {children}
-        </Providers>
+        {/* </Providers> */}
         </body>
     </html>
   )

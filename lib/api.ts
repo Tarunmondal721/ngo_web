@@ -1,6 +1,7 @@
 // "use server"
 
 import axios from "axios";
+import { headers } from "next/headers";
 
 
 const api = axios.create({
@@ -130,17 +131,11 @@ export const getGalleryImages = async (token: string) => {
 }
 
 // create Gallery
-export const createGallery = async (token: string, title: string, description: string, category_id: string, image: File | null, display_name: string) => {
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("description", description);
-  formData.append("category_id", category_id);
-  formData.append("src", image || "");
-  formData.append("alt", display_name);
+export const createGallery = async (token: string, formData:FormData) => {
+ 
   const res = await api.post("/galleries", formData, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data"
     },
   }
   );
@@ -160,34 +155,93 @@ export const getGallery = async (token: string, g_Id: string) => {
 }
 
 // update Gallery data
-
 export const updateGallery = async (
-  token: string, id: string, description: string, category_id: string, image: File | null, display_name: string, title: string
+  token: string, id: string, formData:FormData
 ) => {
-  // const formData = new FormData;
-  // formData.append("title",title);
-  // formData.append("src",image || "");
-  // formData.append("description",description);
-  // formData.append("alt",display_name);
-  // formData.append("category_id",category_id);
-
-
-  let payload: any = {
-    title,
-    description,
-    alt: display_name,
-    category_id,
-  };
-  if (image) {
-    payload.src = await toBase64(image);
-  }
-  // return false;
-  const res = await api.put(`/galleries/${id}`, payload, {
+  
+  // let payload: any = {
+  //   title,
+  //   description,
+  //   alt: display_name,
+  //   category_id,
+  // };
+  // if (image) {
+  //   payload.src = await toBase64(image);
+  // }
+  
+  const res = await api.post(`/galleries/${id}?_method=PUT`, formData, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
     }
   });
   return res;
 }
+
+// delete Gallery
+export const deleteGallery = async (token: string, id: string) => {
+  const res = api.delete(`/galleries/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`, 
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
+
+// Get All Events
+export const getEvents = async(token:string)=>{
+  const res = api.get('/events',{
+    headers:{
+      'Authorization': `Bearer ${token}`,
+      // "Content-Type": "application/json"
+    }
+  });
+  return res;
+};
+
+// create Event
+export const createEvent = async (token: string, formData: FormData) => {
+  const res = await api.post(`/events`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      // "Content-Type": "multipart/form-data", 
+    },
+  });
+  return res;
+};
+
+// Fetch  Specific Event
+export const SpecificEvent = async(token:string,e_Id:string)=>{
+    const res = api.get(`/events/${e_Id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json"
+      },
+    });
+    return res;
+}
+
+// update event
+export const UpdateEvent = async (token: string, e_Id: string, formData: FormData) => {
+  const res = await api.post(`/events/${e_Id}?_method=PUT`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+
+
+// Delete Event
+export const DeleteEvent = async (token:string,e_Id:string)=>{
+  const res = api.delete(`/events${e_Id}`,{
+    headers:{
+      Authorization: `Bearer ${token}`,
+      // "Content-Type": "application/json"
+    },
+  });
+  return res;
+}
+
 

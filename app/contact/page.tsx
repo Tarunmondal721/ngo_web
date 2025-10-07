@@ -70,8 +70,8 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary mt-1" />
                     <div>
                       <h3 className="font-heading font-semibold text-lg mb-2">Email Us</h3>
-                      <p className="text-muted-foreground mb-1">info@hopefoundation.org</p>
-                      <p className="text-muted-foreground">partnerships@hopefoundation.org</p>
+                      <p className="text-muted-foreground mb-1">suhritorganization@gmail.com</p>
+                      {/* <p className="text-muted-foreground">partnerships@hopefoundation.org</p> */}
                     </div>
                   </div>
                 </Card>
@@ -81,8 +81,8 @@ export default function ContactPage() {
                     <Phone className="h-6 w-6 text-primary mt-1" />
                     <div>
                       <h3 className="font-heading font-semibold text-lg mb-2">Call Us</h3>
-                      <p className="text-muted-foreground mb-1">+1 (555) 123-4567</p>
-                      <p className="text-muted-foreground">+1 (555) 123-4568 (Partnerships)</p>
+                      <p className="text-muted-foreground mb-1">+91  8653-681-154</p>
+                      {/* <p className="text-muted-foreground">+1 (555) 123-4568 (Partnerships)</p> */}
                     </div>
                   </div>
                 </Card>
@@ -92,9 +92,9 @@ export default function ContactPage() {
                     <MapPin className="h-6 w-6 text-primary mt-1" />
                     <div>
                       <h3 className="font-heading font-semibold text-lg mb-2">Visit Us</h3>
-                      <p className="text-muted-foreground mb-1">123 Hope Street</p>
-                      <p className="text-muted-foreground mb-1">City, State 12345</p>
-                      <p className="text-muted-foreground">United States</p>
+                      <p className="text-muted-foreground mb-1">NH116B</p>
+                      <p className="text-muted-foreground mb-1">Contai, West Bengal 721401</p>
+                      <p className="text-muted-foreground">India</p>
                     </div>
                   </div>
                 </Card>

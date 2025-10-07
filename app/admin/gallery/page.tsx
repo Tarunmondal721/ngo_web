@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { getGalleryImages, createGallery, deleteCategory, caterorys } from "@/lib/api";
+import { getGalleryImages, createGallery, deleteCategory, caterorys, deleteGallery } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
@@ -80,17 +80,12 @@ export default function GalleryPage() {
     formData.append("title", newGallery.title);
     formData.append("description", newGallery.description);
     formData.append("category_id", newGallery.category_id);
-    if (newGallery.image) formData.append("image", newGallery.image);
-    formData.append("display_name", newGallery.display_name);
+    if (newGallery.image) formData.append("src", newGallery.image);
+    formData.append("alt", newGallery.display_name);
 
     try {
       const res = await createGallery(
-        token,
-        newGallery.title,
-        newGallery.description,
-        newGallery.category_id,
-        newGallery.image!,
-        newGallery.display_name
+        token,formData
       );
 
       if (res?.status === 201 && res?.data?.data) {
@@ -119,7 +114,7 @@ export default function GalleryPage() {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await handleApiRequest(() => deleteCategory(token, id), "Gallery deleted successfully!");
+        const res = await handleApiRequest(() => deleteGallery(token, id), "Gallery deleted successfully!");
         setGalleries((prev) => prev.filter((g) => g.id !== id));
       }
     });

@@ -13,6 +13,7 @@ import {
   UserCircle,
   LogOut,
   FileText,
+  Calendar,
   Menu,
   X,
 } from "lucide-react";
@@ -28,6 +29,7 @@ export default function SidebarPage() {
     { name: "User Manage", href: "/admin/users", icon: Users },
     { name: "Gallery", href: "/admin/gallery", icon: Image },
     { name: "Category", href: "/admin/category", icon: FileText },
+    { name: "Events", href: "/admin/event", icon: Calendar },
     { name: "Donation", href: "/admin/donations", icon: HeartHandshake },
     { name: "Profile", href: "/admin/profile", icon: UserCircle },
     { name: "Logout", href: "#", icon: LogOut, action: "logout" },
