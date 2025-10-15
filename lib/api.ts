@@ -245,3 +245,23 @@ export const DeleteEvent = async (token:string,e_Id:string)=>{
 }
 
 
+//Blog Fetch All
+export const getblogs = async(token:string)=>{
+  const res = api.get('/blogs',{
+    headers:{'Authorization': `Bearer ${token}`}
+  })
+  return res;
+}
+
+// create Blog
+export const createBlog = async (token: string, formData: FormData) => {
+  const res = await api.post(`/blogs`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      // "Content-Type": "multipart/form-data", 
+    },
+  });
+  return res;
+};
+
+
