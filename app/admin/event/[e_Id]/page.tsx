@@ -101,7 +101,7 @@ export default function SpecificEventPage() {
   }, [token]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (!token || !e_Id) return;
 
@@ -118,12 +118,12 @@ export default function SpecificEventPage() {
     formData.append("price", updateEvent.price);
     formData.append("featured", updateEvent.featured ? "1" : "0");
 
-    // ✅ only append file if it’s a File object (not a string from DB)
-    // if (updateEvent.image instanceof File) {
-    //   formData.append("image", updateEvent.image);
-    // }
+    //  only append file if it’s a File object (not a string from DB)
+    if (updateEvent.image instanceof File) {
+      formData.append("image", updateEvent.image);
+    }
 
-    if (updateEvent.image) { formData.append("image", updateEvent.image); }
+    // if (updateEvent.image) { formData.append("image", updateEvent.image); }
 
     try {
       const res = await handleApiRequest(
@@ -359,6 +359,16 @@ export default function SpecificEventPage() {
         <div className="flex justify-end">
           <Button className="bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:opacity-90">
             💾 Update Event
+          </Button>
+
+          <Button type="button"
+            variant="outline"
+            className="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-100"
+            onClick={() => {
+              Router.back();
+            }}
+          >
+            ❌ Cancel
           </Button>
         </div>
       </form>

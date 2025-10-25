@@ -25,7 +25,7 @@ export default function GalleryPage() {
 
   // Fetch galleries
   useEffect(() => {
-    
+
     const fetchGalleries = async () => {
       setLoading(true)
       try {
@@ -56,7 +56,7 @@ export default function GalleryPage() {
       }
     }
     fetchCategories()
-  },[])
+  }, [])
 
   // Filter images
   const filteredImages =
@@ -118,20 +118,11 @@ export default function GalleryPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           {loading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="animate-pulse rounded-xl bg-gray-200 h-40 w-full"
-                >
-                  {/* Optional inner skeleton layers */}
-                  <div className="h-24 bg-gray-300 rounded-t-xl"></div>
-                  <div className="p-2 space-y-2">
-                    <div className="h-4 bg-gray-300 rounded"></div>
-                    <div className="h-4 w-2/3 bg-gray-300 rounded"></div>
-                  </div>
-                </div>
-              ))}
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+              <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-indigo-500 mb-6"></div>
+              <h2 className="text-2xl font-semibold text-gray-700">Loading Galleries...</h2>
+              <p className="text-gray-500 mt-2">Just a sec — beauty takes a moment to load 💫</p>
+
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

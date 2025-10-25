@@ -88,7 +88,8 @@ export default function SidebarPage() {
           <ul className="space-y-2">
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = item.href === '/admin' ? pathname === '/admin' : pathname === item.href || pathname.startsWith(`${item.href}/`);
+
 
               if (item.action === "logout") {
                 return (

@@ -134,8 +134,8 @@ export default function BlogPage() {
     };
 
 
-    // Delete gallery
-    const handleDeleteEvent = async (id: string) => {
+    // Delete Blog
+    const handleDeleteBlog = async (id: string) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -146,7 +146,7 @@ export default function BlogPage() {
             confirmButtonText: "Yes, delete it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await handleApiRequest(() => DeleteEvent(token, id), "Event deleted successfully!");
+                const res = await handleApiRequest(() => DeleteEvent(token, id), "Blog deleted successfully!");
                 setblogs((prev) => prev.filter((e) => e.id !== id));
             }
         });
@@ -182,13 +182,13 @@ export default function BlogPage() {
             name: "Action",
             cell: (row) => (
                 <div className="flex space-x-2">
-                    <Link href={`/admin/event/${row.id}`}>
+                    <Link href={`/admin/blog/${row.id}`}>
                         <Button className="flex items-center gap-1 cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md">
                             <Edit size={16} /> Edit
                         </Button>
                     </Link>
                     <Button
-                        onClick={() => handleDeleteEvent(row.id)}
+                        onClick={() => handleDeleteBlog(row.id)}
                         className="flex items-center gap-1 bg-red-500 cursor-pointer hover:bg-red-600 text-white px-3 py-1 rounded-md"
                     >
                         <Trash2 size={16} /> Delete

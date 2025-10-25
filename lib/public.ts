@@ -23,3 +23,15 @@ export const GetEvents = async () =>{
   const res = await api.get("/events");
   return res;
 }
+
+// get all blogs
+export const GetBlogs = async ()=>{
+  const res = await api.get("/blogs");
+  return res;
+}
+
+// get blog by slug
+export const SlugBlog = async (slug: string) =>{
+  const res = await api.get(`/blogs/${slug}`);
+  return res;
+}

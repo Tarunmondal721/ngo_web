@@ -212,7 +212,7 @@ export const createEvent = async (token: string, formData: FormData) => {
 
 // Fetch  Specific Event
 export const SpecificEvent = async(token:string,e_Id:string)=>{
-    const res = api.get(`/events/${e_Id}`,{
+    const res =await api.get(`/events/${e_Id}`,{
       headers:{
         Authorization: `Bearer ${token}`,
         // "Content-Type": "application/json"
@@ -235,7 +235,7 @@ export const UpdateEvent = async (token: string, e_Id: string, formData: FormDat
 
 // Delete Event
 export const DeleteEvent = async (token:string,e_Id:string)=>{
-  const res = api.delete(`/events${e_Id}`,{
+  const res = await api.delete(`/events/${e_Id}`,{
     headers:{
       Authorization: `Bearer ${token}`,
       // "Content-Type": "application/json"
@@ -263,5 +263,37 @@ export const createBlog = async (token: string, formData: FormData) => {
   });
   return res;
 };
+
+// Fetch  Specific Blog
+export const SpecificBlog = async(token:string,b_Id:string)=>{
+    const res = await api.get(`/blogs/${b_Id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json"
+      },
+    });
+    return res;
+}
+
+// update Blog
+export const updateBlog = async (token:string, b_Id:string, formData:FormData)=>{
+  const res = await api.post(`/blogs/${b_Id}?_method=PUT`,formData,{
+    headers:{
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+}
+
+// Delete Blog
+export const DeleteBlog = async (token:string,e_Id:string)=>{
+  const res = api.delete(`/blogs${e_Id}`,{
+    headers:{
+      Authorization: `Bearer ${token}`,
+      // "Content-Type": "application/json"
+    },
+  });
+  return res;
+}
 
 

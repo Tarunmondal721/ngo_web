@@ -154,93 +154,86 @@ export default function EventsPage() {
     <div className="min-h-screen">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-heading font-black text-4xl md:text-6xl text-foreground mb-6">Events</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Join us at our upcoming events and be part of our mission to create positive change. From fundraising galas
-            to volunteer opportunities, there's something for everyone.
-          </p>
-        </div>
-      </section>
+      {loading ? (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+          <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-indigo-500 mb-6"></div>
+          <h2 className="text-2xl font-semibold text-gray-700">Loading Events...</h2>
+          <p className="text-gray-500 mt-2">Just a moment — something memorable is coming up ✨</p>
 
-      {/* Filter and Tabs Section */}
-      <section className="py-12 bg-muted">
-        <div className="container mx-auto px-4">
-          {/* Event Type Tabs */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-background rounded-lg p-1 shadow-sm">
-              <Button
-                variant={activeTab === "upcoming" ? "default" : "ghost"}
-                onClick={() => setActiveTab("upcoming")}
-                className="px-6"
-              >
-                Upcoming Events
-              </Button>
-              <Button
-                variant={activeTab === "past" ? "default" : "ghost"}
-                onClick={() => setActiveTab("past")}
-                className="px-6"
-              >
-                Past Events
-              </Button>
+        </div>
+      ) : (
+        <>
+
+          {/* Hero Section */}
+          <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
+            <div className="container mx-auto px-4 text-center">
+              <h1 className="font-heading font-black text-4xl md:text-6xl text-foreground mb-6">Events</h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Join us at our upcoming events and be part of our mission to create positive change. From fundraising galas
+                to volunteer opportunities, there's something for everyone.
+              </p>
             </div>
-          </div>
+          </section>
 
-          {/* Category Filter */}
-          <div className="flex items-center gap-4 mb-8">
-            <Filter className="h-5 w-5 text-muted-foreground" />
-            <span className="font-medium text-foreground">Filter by category:</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button
-              key="All"
-              variant={selectedCategory === "All" ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory("All")}
-              className="mb-2"
-            >
-              All
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category.id || category}
-                variant={selectedCategory === category.name ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory(category.name)}
-                className="mb-2"
-              >
-                {category.name}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Events Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          {loading ? (
-            // 🔹 Skeleton Loader
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="animate-pulse rounded-xl bg-gray-200 h-40 w-full"
-                >
-                  {/* Optional inner skeleton layers */}
-                  <div className="h-24 bg-gray-300 rounded-t-xl"></div>
-                  <div className="p-2 space-y-2">
-                    <div className="h-4 bg-gray-300 rounded"></div>
-                    <div className="h-4 w-2/3 bg-gray-300 rounded"></div>
-                  </div>
+          {/* Filter and Tabs Section */}
+          <section className="py-12 bg-muted">
+            <div className="container mx-auto px-4">
+              {/* Event Type Tabs */}
+              <div className="flex justify-center mb-8">
+                <div className="bg-background rounded-lg p-1 shadow-sm">
+                  <Button
+                    variant={activeTab === "upcoming" ? "default" : "ghost"}
+                    onClick={() => setActiveTab("upcoming")}
+                    className="px-6"
+                  >
+                    Upcoming Events
+                  </Button>
+                  <Button
+                    variant={activeTab === "past" ? "default" : "ghost"}
+                    onClick={() => setActiveTab("past")}
+                    className="px-6"
+                  >
+                    Past Events
+                  </Button>
                 </div>
-              ))}
+              </div>
+
+              {/* Category Filter */}
+              <div className="flex items-center gap-4 mb-8">
+                <Filter className="h-5 w-5 text-muted-foreground" />
+                <span className="font-medium text-foreground">Filter by category:</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  key="All"
+                  variant={selectedCategory === "All" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory("All")}
+                  className="mb-2"
+                >
+                  All
+                </Button>
+                {categories.map((category) => (
+                  <Button
+                    key={category.id || category}
+                    variant={selectedCategory === category.name ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(category.name)}
+                    className="mb-2"
+                  >
+                    {category.name}
+                  </Button>
+                ))}
+              </div>
             </div>
-          ) : (
-            // 🔹 Actual Event Display Section
-            <>
+          </section>
+
+          {/* Events Content */}
+          <section className="py-20">
+            <div className="container mx-auto px-4">
+
+
+
               {activeTab === "upcoming" && (
                 <>
                   {/* Featured Event */}
@@ -448,10 +441,12 @@ export default function EventsPage() {
                   </div>
                 </div>
               )}
-            </>
-          )}
-        </div>
-      </section>
+
+            </div>
+          </section>
+        </>
+      )}
+
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
