@@ -290,7 +290,21 @@ export default function SpecificBlogPage() {
                     />
                 </div>
 
-
+                        {/* Featured */}
+                <div className="flex items-center space-x-3">
+                    <input
+                        id="featured"
+                        type="checkbox"
+                        checked={UpdateBlog.featured}
+                        onChange={(e) =>
+                            setUpdateBlog({ ...UpdateBlog, featured: e.target.checked })
+                        }
+                        className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                    />
+                    <Label htmlFor="featured" className="font-semibold">
+                        Mark as Featured
+                    </Label>
+                </div>
 
                 {/* Image Upload */}
                 <div className="flex flex-col items-center space-y-3">
