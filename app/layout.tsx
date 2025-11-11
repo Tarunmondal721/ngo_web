@@ -22,7 +22,7 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Suhrit Organisation - Making a Difference Together",
+  title: "Suhrit Organization - Making a Difference Together",
   description:
     "Join us in creating positive change in communities worldwide. Donate, volunteer, and be part of our mission to build a better tomorrow.",
   generator: "v0.app",

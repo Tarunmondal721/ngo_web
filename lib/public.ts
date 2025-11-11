@@ -49,16 +49,15 @@ export const storeEventRegistration = async (data: any) =>{
 }
 
 //send otp
-export const sendOtp = async (email: string, eventName: string) => {
+export const sendOtp = async (email: string) => {
   const response = await api.post("/send-otp", {
     email,
-    event_name: eventName,
   });
   return response.data;
 };
 
 
-// verify otp
+// verify otp and store registration
 export const verifyOtp = async (data: {
   name: string;
   email: string;
@@ -70,3 +69,28 @@ export const verifyOtp = async (data: {
   const response = await api.post("/verify-otp", data);
   return response.data;
 };
+
+//create order
+export const createOrder = async (data: any) => {
+  const response = await api.post("/create-order", data);
+  return response.data;
+};
+
+
+//verify payment
+export type VerifyPayload = {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+};
+
+export const verifyPayment = async (data: VerifyPayload) => {
+  const response = await api.post("/verify-payment", data);
+  return response.data; // { success: true }
+};
+
+//otp verified
+export const Otpverify = async(email: string, otp: string) => {
+  const responce = await api.post('/verifyotp', { email, otp });
+  return responce.data;
+}

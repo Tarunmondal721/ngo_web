@@ -29,7 +29,7 @@ export function Navigation() {
     src="/logo.png"
     height={70}
     width={70}
-    alt="Suhrit Organisation"
+    alt="Suhrit Organization"
     className="m-0"
     whileHover={{ rotate: 10, scale: 1.1 }}
     transition={{ type: "spring", stiffness: 300 }}

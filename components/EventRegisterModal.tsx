@@ -83,7 +83,7 @@ export default function EventRegisterModal({
         setIsResending(true);
 
         try {
-            await sendOtp(data.email, event.title);
+            await sendOtp(data.email);
             setStep(2);
             setCountdownKey(Date.now());
         } catch (error: any) {
@@ -97,7 +97,7 @@ export default function EventRegisterModal({
     const handleResend = async () => {
         setIsResending(true);
         try {
-            await sendOtp(email, event.title);
+            await sendOtp(email);
             setCountdownKey(Date.now());
             alert("OTP resent!");
         } catch (error: any) {
