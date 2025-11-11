@@ -8,6 +8,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Calendar, MapPin, Clock, Users, ExternalLink, Filter } from "lucide-react"
 import { caterorys, GetEvents } from "@/lib/public"
+import EventRegisterModal from "@/components/EventRegisterModal";
 
 
 
@@ -102,6 +103,13 @@ export default function EventsPage() {
   const [pastEvents, setpastEvents] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+
+  const openRegisterModal = (event: any) => {
+    setSelectedEvent(event);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
 
@@ -297,9 +305,9 @@ export default function EventsPage() {
                                   <span className="font-semibold text-lg text-primary capitalize">
                                     {featuredEvent.price}
                                   </span>
-                                  <Button size="lg">
+                                  <Button size="sm" onClick={() => openRegisterModal(featuredEvent)}>
                                     Register Now
-                                    <ExternalLink className="ml-2 h-4 w-4" />
+                                    <ExternalLink className="ml-2 h-3 w-3" />
                                   </Button>
                                 </div>
                               </CardContent>
@@ -374,7 +382,7 @@ export default function EventsPage() {
                                 <span className="font-medium text-primary capitalize">
                                   {event.price}
                                 </span>
-                                <Button size="sm">
+                                <Button size="sm" onClick={() => openRegisterModal(event)}>
                                   Register
                                   <ExternalLink className="ml-2 h-3 w-3" />
                                 </Button>
@@ -385,6 +393,15 @@ export default function EventsPage() {
                     </div>
                   </div>
                 </>
+              )}
+
+              {/* REGISTER MODAL GOES HERE — OUTSIDE THE <> BUT IN THE SAME COMPONENT */}
+              {selectedEvent && (
+                <EventRegisterModal
+                  event={selectedEvent}
+                  open={modalOpen}
+                  onOpenChange={setModalOpen}
+                />
               )}
 
               {activeTab === "past" && (

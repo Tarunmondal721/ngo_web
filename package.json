@@ -39,7 +39,7 @@
     "@radix-ui/react-tooltip": "1.1.6",
     "@tinymce/tinymce-react": "^6.3.0",
     "autoprefixer": "^10.4.20",
-    "axios": "^1.11.0",
+    "axios": "^1.13.2",
     "chart": "^0.1.2",
     "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
@@ -56,10 +56,11 @@
     "next-themes": "^0.4.6",
     "react": "^19",
     "react-chartjs-2": "^5.3.0",
+    "react-countdown": "^2.3.6",
     "react-data-table-component": "^7.7.0",
     "react-day-picker": "9.8.0",
     "react-dom": "^19",
-    "react-hook-form": "^7.60.0",
+    "react-hook-form": "^7.66.0",
     "react-resizable-panels": "^2.1.7",
     "react-select": "^5.10.2",
     "recharts": "2.15.4",
@@ -69,7 +70,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.9",
-    "zod": "3.25.67"
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",

@@ -35,3 +35,38 @@ export const SlugBlog = async (slug: string) =>{
   const res = await api.get(`/blogs/${slug}`);
   return res;
 }
+
+//store contact message
+export const storeContactMessage = async (data: any) =>{
+  const res = await api.post("/contacts", data);
+  return res;
+}
+
+// store event registeration
+export const storeEventRegistration = async (data: any) =>{
+  const res = await api.post("/event/register", data);
+  return res;
+}
+
+//send otp
+export const sendOtp = async (email: string, eventName: string) => {
+  const response = await api.post("/send-otp", {
+    email,
+    event_name: eventName,
+  });
+  return response.data;
+};
+
+
+// verify otp
+export const verifyOtp = async (data: {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  event_id: number;
+  otp: string;
+}) => {
+  const response = await api.post("/verify-otp", data);
+  return response.data;
+};
